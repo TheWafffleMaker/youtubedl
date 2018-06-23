@@ -8,12 +8,14 @@ import java.awt.event.ActionListener;
 
 public class WindowFactory {
 
+    private static final Color BG_COLOR = Color.decode("#dbdbdb");
+
     public static JFrame createWindow(int width, int height, String name) {
         JFrame frame = new JFrame(name);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setSize(width, height);
-        frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+        frame.getContentPane().setBackground(BG_COLOR);
         return frame;
     }
 
@@ -27,9 +29,9 @@ public class WindowFactory {
         return button;
     }
 
-    public static JTextArea createTextArea(int width, int height, int xPos, int yPos)
+    public static JTextArea createTextArea(int width, int height, int xPos, int yPos, String text)
     {
-        JTextArea txt = new JTextArea("Enter URL here...");
+        JTextArea txt = new JTextArea(text);
         txt.setBounds(xPos, yPos, width, height);
         txt.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         return txt;
@@ -37,7 +39,8 @@ public class WindowFactory {
 
     public static JCheckBox createCheckBox(int xPos, int yPos, String text) {
         JCheckBox chk = new JCheckBox(text);
-        chk.setBounds(xPos, yPos, 15, 15);
+        chk.setBackground(BG_COLOR);
+        chk.setBounds(xPos, yPos, 75, 15);
         chk.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         return chk;
     }
@@ -52,15 +55,24 @@ public class WindowFactory {
 
         public void actionPerformed(ActionEvent e) {
             Container cont = ( (JButton)e.getSource() ).getParent();
+
             JTextArea txt = (JTextArea) cont.getComponent(1);
+            String url = txt.getText();
 
-            boolean audio;
+            txt = (JTextArea) cont.getComponent(3);
+            String path = txt.getText();
 
-            JCheckBox chk = (JCheckBox) cont.getComponent(2);
-            audio = chk.isSelected();
+            if ((path.charAt(path.length()-1)) == '\\') {
+                path += "%(title)s.%(ext)s";
+            } else {
+                path += "\\%(title)s.%(ext)s";
+            }
+
+            JCheckBox chk = (JCheckBox) cont.getComponent(4);
+            boolean audio = chk.isSelected();
 
 
-            Application.download(txt.getText(), audio);
+            Application.download(url, path, audio);
         }
     }
 

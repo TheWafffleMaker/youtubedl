@@ -17,11 +17,11 @@ public class Application {
 
     private static Logger log = LoggerFactory.getLogger(Application.class);
 
-    public static void download(String url, boolean audio) {
+    public static void download(String url, String path, boolean audio) {
 
         String command;
 
-        command = "youtube-dl.exe" + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "") + " -o \"c:\\Users\\Henri\\Downloads\\%(title)s.%(ext)s\" " + url;
+        command = "youtube-dl.exe" + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "") + " -o " + path + " " + url;
 
         ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command); // Process creation
         builder.redirectErrorStream(true);
@@ -46,10 +46,12 @@ public class Application {
 
     public static void main(String[] args) {
         JFrame window = WindowFactory.createWindow(600, 400, "Youtube Downloader");
-        window.add(WindowFactory.createButton(120, 30, window.getX()+400, window.getY()+50, "Download"));
-        window.add(WindowFactory.createTextArea(300, 20, window.getX()+50, window.getY()+55));
-        window.add(WindowFactory.createCheckBox(50, 90, "Audio"));
-        window.add(WindowFactory.createLabel(70, 90, "audio"));
+        window.add(WindowFactory.createLabel(window.getX()+30, window.getY()+57, "URL  :"));
+        window.add(WindowFactory.createTextArea(300, 20, window.getX()+75, window.getY()+55, "")); // URL
+        window.add(WindowFactory.createLabel(window.getX()+30, window.getY()+82, "Path :"));
+        window.add(WindowFactory.createTextArea(300, 20, window.getX()+75, window.getY()+80, "")); // PATH
+        window.add(WindowFactory.createCheckBox(50, 115, "Audio"));
+        window.add(WindowFactory.createButton(120, 30, window.getX()+400, window.getY()+55, "Download"));
         window.setVisible(true);
 
     }
