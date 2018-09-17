@@ -3,7 +3,7 @@ package fr.ritonquilol.youtubedl.core;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import org.slf4j.*;
+import util.Listeners;
 
 import javax.swing.*;
 
@@ -15,13 +15,16 @@ import javax.swing.*;
 
 public class Application {
 
-    private static Logger log = LoggerFactory.getLogger(Application.class);
+    private static JTextArea progress = WindowFactory.createTextArea(500, 150, 40, 150, "");
+
 
     public static void download(String url, String path, boolean audio) {
 
         String command;
 
-        command = "youtube-dl.exe" + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "") + " -o " + path + " " + url;
+        command = "youtube-dl.exe" + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "") + (url.contains("&list") ? " --yes-playlist" : "") + " -o \"" + path + "\" \"" + url + "\"";
+
+        System.out.println(command);
 
         ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command); // Process creation
         builder.redirectErrorStream(true);
@@ -33,25 +36,39 @@ public class Application {
             while (true) { // Displays the process outputs
                 line = reader.readLine();
                 if (line == null) {
-                    log.info("End of process.");
+                    System.out.println("End of process.");
                     break;
                 }
-                log.info(line);
+                System.out.println(line);
+                progress.setText(progress.getText() + "\n" + line);
             }
 
         } catch (IOException e) {
-            log.trace("Process couldn't be loaded.", e);
+            e.printStackTrace();
+        }
+
+        class Download implements Runnable {
+
+            public void run() {
+
+            }
         }
     }
 
     public static void main(String[] args) {
         JFrame window = WindowFactory.createWindow(600, 400, "Youtube Downloader");
+
+        JTextArea urlArea = WindowFactory.createTextArea(300, 20, window.getX()+75, window.getY()+55, "");
+        JTextArea pathArea = WindowFactory.createTextArea(300, 20, window.getX()+75, window.getY()+80, System.getProperty("user.home") + "\\Downloads\\");
+        JCheckBox audioOnly = WindowFactory.createCheckBox(50, 115, "Audio only");
+
         window.add(WindowFactory.createLabel(window.getX()+30, window.getY()+57, "URL  :"));
-        window.add(WindowFactory.createTextArea(300, 20, window.getX()+75, window.getY()+55, "")); // URL
+        window.add(urlArea); // URL
         window.add(WindowFactory.createLabel(window.getX()+30, window.getY()+82, "Path :"));
-        window.add(WindowFactory.createTextArea(300, 20, window.getX()+75, window.getY()+80, "")); // PATH
-        window.add(WindowFactory.createCheckBox(50, 115, "Audio"));
-        window.add(WindowFactory.createButton(120, 30, window.getX()+400, window.getY()+55, "Download"));
+        window.add(pathArea); // PATH
+        window.add(audioOnly);
+        window.add(WindowFactory.createButton(120, 30, window.getX()+400, window.getY()+55, "Download", new Listeners.Downloader()));
+        window.add(progress);
         window.setVisible(true);
 
     }

@@ -1,9 +1,7 @@
 package fr.ritonquilol.youtubedl.core;
 
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WindowFactory {
@@ -19,13 +17,13 @@ public class WindowFactory {
         return frame;
     }
 
-    public static JButton createButton(int width, int height, int xPos, int yPos, String text)
+    public static JButton createButton(int width, int height, int xPos, int yPos, String text, ActionListener listener)
     {
         final JButton button = new JButton(text);
         button.setBounds(xPos, yPos, width, height);
         button.setBackground(Color.GRAY);
         button.setForeground(Color.WHITE);
-        button.addActionListener(new Downloader());
+        button.addActionListener(listener);
         return button;
     }
 
@@ -40,7 +38,7 @@ public class WindowFactory {
     public static JCheckBox createCheckBox(int xPos, int yPos, String text) {
         JCheckBox chk = new JCheckBox(text);
         chk.setBackground(BG_COLOR);
-        chk.setBounds(xPos, yPos, 75, 15);
+        chk.setBounds(xPos, yPos, 100, 15);
         chk.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         return chk;
     }
@@ -49,31 +47,6 @@ public class WindowFactory {
         JLabel label = new JLabel(text);
         label.setBounds(xPos, yPos, 35, 15);
         return label;
-    }
-
-    private static class Downloader implements ActionListener {
-
-        public void actionPerformed(ActionEvent e) {
-            Container cont = ( (JButton)e.getSource() ).getParent();
-
-            JTextArea txt = (JTextArea) cont.getComponent(1);
-            String url = txt.getText();
-
-            txt = (JTextArea) cont.getComponent(3);
-            String path = txt.getText();
-
-            if ((path.charAt(path.length()-1)) == '\\') {
-                path += "%(title)s.%(ext)s";
-            } else {
-                path += "\\%(title)s.%(ext)s";
-            }
-
-            JCheckBox chk = (JCheckBox) cont.getComponent(4);
-            boolean audio = chk.isSelected();
-
-
-            Application.download(url, path, audio);
-        }
     }
 
 }
