@@ -5,5 +5,5 @@ For audio conversion, [ffmpeg](https://github.com/vot/ffbinaries-prebuilt/releas
 
 You also need Microsoft Redistribuable Visual C++ 2010 if the error "MSVCR100.dll is missing" when you try to launch from command line.
 
-[32bits (x86)](https://www.microsoft.com/fr-fr/download/details.aspx?id=5555).
+[32bits (x86)](https://www.microsoft.com/fr-fr/download/details.aspx?id=5555) 
 [64bits (x64)](https://www.microsoft.com/fr-fr/download/details.aspx?id=14632)
