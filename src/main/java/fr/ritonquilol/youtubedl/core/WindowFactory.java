@@ -27,12 +27,21 @@ public class WindowFactory {
         return button;
     }
 
-    public static JTextArea createTextArea(int width, int height, int xPos, int yPos, String text)
-    {
-        JTextArea txt = new JTextArea(text);
+    public static JTextField createTextField(int width, int height, int xPos, int yPos, String text) {
+        JTextField txt = new JTextField(text);
         txt.setBounds(xPos, yPos, width, height);
         txt.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         return txt;
+    }
+
+    public static JScrollPane createTextAreaWithScroll(int width, int height, int xPos, int yPos, String text)
+    {
+        JScrollPane scroll = new JScrollPane(new JTextArea(text));
+        scroll.setBounds(xPos, yPos, width, height);
+        scroll.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        return scroll;
     }
 
     public static JCheckBox createCheckBox(int xPos, int yPos, String text) {

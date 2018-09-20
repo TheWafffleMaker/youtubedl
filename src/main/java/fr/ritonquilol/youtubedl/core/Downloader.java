@@ -8,23 +8,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Downloader {
+class Downloader {
 
     public static class DownloadListener implements ActionListener {
 
         private JTextArea progress;
 
-        public DownloadListener(JTextArea progress) {
+        DownloadListener(JTextArea progress) {
             this.progress = progress;
         }
 
         public void actionPerformed(ActionEvent e) {
             Container cont = ( (JButton)e.getSource() ).getParent();
 
-            JTextArea txt = (JTextArea) cont.getComponent(1);
+            JTextField txt = (JTextField) cont.getComponent(1);
             String url = txt.getText();
 
-            txt = (JTextArea) cont.getComponent(3);
+            txt = (JTextField) cont.getComponent(3);
             String path = txt.getText();
 
             if ((path.charAt(path.length()-1)) == '\\') {
@@ -36,16 +36,19 @@ public class Downloader {
             JCheckBox chk = (JCheckBox) cont.getComponent(4);
             boolean audio = chk.isSelected();
 
+            chk = (JCheckBox) cont.getComponent(5);
+            boolean playlist = chk.isSelected() && url.contains("&list");
 
-            download(url, path, audio, progress);
+
+            download(url, path, audio, playlist, progress);
         }
     }
 
-    public static void download(String url, String path, boolean audio, JTextArea progress) {
+    static void download(String url, String path, boolean audio, boolean playlist, JTextArea progress) {
 
         String command;
 
-        command = "youtube-dl.exe" + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "") + (url.contains("&list") ? " --yes-playlist" : "") + " -o \"" + path + "\" \"" + url + "\"";
+        command = "youtube-dl.exe" + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "") + (playlist  ? " --yes-playlist" : "") + " -o \"" + path + "\" \"" + url + "\"";
 
         System.out.println(command);
 
