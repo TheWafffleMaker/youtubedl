@@ -29,6 +29,7 @@ public class Application {
         window.add(playlist);
         window.add(progress);
         window.add(WindowFactory.createButton(120, 30, window.getX()+400, window.getY()+55, "Download", new Downloader.DownloadListener((JTextArea) progress.getViewport().getComponent(0))));
+        window.add(WindowFactory.createButton(120, 30, window.getX()+40, window.getY()+315, "Update", new Updater.UpdateListener((JTextArea) progress.getViewport().getComponent(0))));
         window.setVisible(true);
 
     }

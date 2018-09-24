@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class WindowFactory {
+class WindowFactory {
 
     private static final Color BG_COLOR = Color.decode("#dbdbdb");
 
