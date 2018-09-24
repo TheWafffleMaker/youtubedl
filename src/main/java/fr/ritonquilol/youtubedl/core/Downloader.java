@@ -12,7 +12,8 @@ class Downloader {
 
     public static class DownloadListener implements ActionListener {
 
-        private JTextArea progress;
+        final private JTextArea progress;
+        private DownloadThread thread;
 
         DownloadListener(JTextArea progress) {
             this.progress = progress;
@@ -40,39 +41,53 @@ class Downloader {
             boolean playlist = chk.isSelected() && url.contains("&list");
 
 
-            download(url, path, audio, playlist, progress);
+            thread = new DownloadThread(url, path, audio, playlist, progress);
+            thread.start();
         }
     }
 
-    static void download(String url, String path, boolean audio, boolean playlist, JTextArea progress) {
+    private static class DownloadThread extends Thread {
 
-        String command;
+        private final JTextArea progress;
+        private final String url, path;
+        private final boolean audio, playlist;
 
-        command = "youtube-dl.exe" + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "") + (playlist  ? " --yes-playlist" : "") + " -o \"" + path + "\" \"" + url + "\"";
+        DownloadThread(String url, String path, boolean audio, boolean playlist, JTextArea progress) {
+            this.url = url;
+            this.audio = audio;
+            this.path = path;
+            this.playlist = playlist;
+            this.progress = progress;
+        }
 
-        System.out.println(command);
+        @Override
+        public void run() {
+            String command = "youtube-dl.exe" + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "") + (playlist  ? " --yes-playlist" : "") + " -o \"" + path + "\" \"" + url + "\"";
 
-        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command); // Process creation
-        builder.redirectErrorStream(true);
+            System.out.println(command);
 
-        try {
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command); // Process creation
+            builder.redirectErrorStream(true);
 
-            Process process = builder.start(); // Process execution
+            try {
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream())); // Reads the process outputs
-            String line;
-            while (true) { // Displays the process outputs
-                line = reader.readLine();
-                if (line == null) {
-                    System.out.println("End of process.");
-                    break;
+                Process process = builder.start(); // Process execution
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream())); // Reads the process outputs
+                String line;
+                while (true) { // Displays the process outputs
+                    line = reader.readLine();
+                    if (line == null) {
+                        System.out.println("End of process.");
+                        break;
+                    }
+                    System.out.println(line);
+                    progress.setText(progress.getText() + "\n" + line);
                 }
-                System.out.println(line);
-                progress.setText(progress.getText() + "\n" + line);
-            }
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

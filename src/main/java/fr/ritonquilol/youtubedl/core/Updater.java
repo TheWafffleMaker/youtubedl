@@ -11,13 +11,29 @@ class Updater {
 
     public static class UpdateListener implements ActionListener {
 
-        JTextArea progress;
+        final UpdateThread thread;
 
         UpdateListener(JTextArea progress) {
-            this.progress = progress;
+            this.thread = new UpdateThread(progress);
         }
 
         public void actionPerformed(ActionEvent e) {
+            thread.start();
+        }
+
+
+    }
+
+    private static class UpdateThread extends Thread {
+
+        final JTextArea progress;
+
+        private UpdateThread(JTextArea progress) {
+            this.progress = progress;
+        }
+
+        @Override
+        public void run() {
             String command = "youtube-dl.exe -U";
 
             ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command); // Process creation
