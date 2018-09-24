@@ -14,6 +14,7 @@ class WindowFactory {
         frame.setLayout(null);
         frame.setSize(width, height);
         frame.getContentPane().setBackground(BG_COLOR);
+        frame.setLocationRelativeTo(null);
         return frame;
     }
 

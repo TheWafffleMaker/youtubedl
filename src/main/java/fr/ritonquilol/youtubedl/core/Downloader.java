@@ -79,6 +79,7 @@ class Downloader {
                     line = reader.readLine();
                     if (line == null) {
                         System.out.println("End of process.");
+                        progress.setText("End of process.");
                         break;
                     }
                     System.out.println(line);
