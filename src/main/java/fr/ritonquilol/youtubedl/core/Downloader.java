@@ -62,7 +62,10 @@ class Downloader {
 
         @Override
         public void run() {
-            String command = "youtube-dl.exe" + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "") + (playlist  ? " --yes-playlist" : "") + " -o \"" + path + "\" \"" + url + "\"";
+            String command = "youtube-dl.exe"
+                    + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "")
+                    + (playlist  ? " --yes-playlist" : "")
+                    + " -o \"" + path + "\" \"" + url + "\"";
 
             System.out.println(command);
 
@@ -79,7 +82,7 @@ class Downloader {
                     line = reader.readLine();
                     if (line == null) {
                         System.out.println("End of process.");
-                        progress.setText("End of process.");
+                        progress.setText(progress.getText() + "\n" + "End of process.");
                         break;
                     }
                     System.out.println(line);

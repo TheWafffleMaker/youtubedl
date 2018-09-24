@@ -21,7 +21,7 @@ public class Application {
         JCheckBox playlist = WindowFactory.createCheckBox(150, 115, "Playlist");
         JScrollPane progressScroll = WindowFactory.createTextAreaWithScroll(500, 150, 40, 150, "");
         JTextArea progress = (JTextArea) progressScroll.getViewport().getComponent(0);
-        ((DefaultCaret)progress.getCaret()).setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
+        ((DefaultCaret)progress.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
         window.add(WindowFactory.createLabel(30, 57, "URL  :"));
         window.add(urlArea); // URL
@@ -30,7 +30,7 @@ public class Application {
         window.add(audioOnly);
         window.add(playlist);
         window.add(progressScroll);
-        window.add(WindowFactory.createButton(120, 30, 400, 55, "Download", new Downloader.DownloadListener((JTextArea) progress)));
+        window.add(WindowFactory.createButton(120, 30, 400, 55, "Download", new Downloader.DownloadListener(progress)));
         window.add(WindowFactory.createButton(120, 30, 40, 315, "Update", new Updater.UpdateListener(progress)));
         window.setVisible(true);
 

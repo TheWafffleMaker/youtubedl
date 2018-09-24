@@ -11,13 +11,17 @@ class Updater {
 
     public static class UpdateListener implements ActionListener {
 
-        final UpdateThread thread;
+        private UpdateThread thread;
+        private final JTextArea progress;
 
         UpdateListener(JTextArea progress) {
             this.thread = new UpdateThread(progress);
+            this.progress = progress;
+            thread.start();
         }
 
         public void actionPerformed(ActionEvent e) {
+            thread = new UpdateThread(progress);
             thread.start();
         }
 
@@ -49,11 +53,11 @@ class Updater {
                     line = reader.readLine();
                     if (line == null) {
                         System.out.println("End of process.");
-                        progress.setText("End of process.");
+                        //progress.setText(progress.getText() + "End of process.");
                         break;
                     }
                     System.out.println(line);
-                    progress.setText(progress.getText() + " " + line+ "\n" );
+                    progress.setText(progress.getText() + " " + line + "\n");
                 }
 
             } catch (IOException e1) {
