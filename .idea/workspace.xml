@@ -7,12 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d80e6776-86c5-4f44-a4a6-0fc290c74452" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Window.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/youtubedl_jar/youtubedl.jar" afterPath="$PROJECT_DIR$/out/artifacts/youtubedl_jar/youtubedl.jar" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Application.java" afterPath="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Application.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Downloader.java" afterPath="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Downloader.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Updater.java" afterPath="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Updater.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fr/ritonquilol/youtubedl/core/Application.class" afterPath="$PROJECT_DIR$/target/classes/fr/ritonquilol/youtubedl/core/Application.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fr/ritonquilol/youtubedl/core/WindowFactory.class" afterPath="$PROJECT_DIR$/target/classes/fr/ritonquilol/youtubedl/core/WindowFactory.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,8 +31,18 @@
       <file leaf-file-name="Application.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+            <state relative-caret-position="0">
+              <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Window.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Window.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -45,7 +53,7 @@
       <file leaf-file-name="Downloader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Downloader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
+            <state relative-caret-position="1444">
               <caret line="84" column="69" lean-forward="false" selection-start-line="84" selection-start-column="69" selection-end-line="84" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -59,8 +67,8 @@
       <file leaf-file-name="Updater.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Updater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="23" column="48" lean-forward="true" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+            <state relative-caret-position="342">
+              <caret line="23" column="48" lean-forward="false" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#859#860#0" expanded="true" />
@@ -73,8 +81,8 @@
       <file leaf-file-name="WindowFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/WindowFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+            <state relative-caret-position="171">
+              <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,9 +103,11 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>System.out.println</find>
+      <find>window</find>
     </findStrings>
     <replaceStrings>
       <replace>log.info</replace>
+      <replace>frame</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -115,15 +125,15 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/util/Listeners.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Listeners.java" />
-        <option value="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Window.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/WindowFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Updater.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Downloader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Window.java" />
         <option value="$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Application.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="157" />
     <option name="y" value="-21" />
     <option name="width" value="1680" />
@@ -144,7 +154,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -226,9 +238,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -463,29 +473,34 @@
       <option name="project" value="LOCAL" />
       <updated>1537812680277</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fix and improve on threads">
+      <created>1537815799227</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1537815799227</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32826087" sideWeight="0.3651386" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.3651386" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32826087" sideWeight="0.6348614" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.63646054" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.3651386" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.36353946" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.4978678" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18176973" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.4936034" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18550107" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -496,8 +511,10 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.4936034" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="PMD" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -509,7 +526,9 @@
     <MESSAGE value="Update button" />
     <MESSAGE value="Dynamic progress" />
     <MESSAGE value="Center on start" />
-    <option name="LAST_COMMIT_MESSAGE" value="Center on start" />
+    <MESSAGE value="Fix and improve on threads" />
+    <MESSAGE value="Refactor window" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor window" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -518,6 +537,24 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/WindowFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="931">
+          <caret line="49" column="5" lean-forward="false" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Downloader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -544,41 +581,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Downloader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#465#466#0" expanded="true" />
-            <element signature="e#513#514#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/WindowFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="931">
-          <caret line="49" column="5" lean-forward="false" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -608,9 +611,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -640,9 +641,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -672,9 +671,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -704,9 +701,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="608">
           <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -736,9 +731,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -768,9 +761,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -800,7 +791,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
           <caret line="36" column="18" lean-forward="false" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -818,9 +808,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="23" column="118" lean-forward="false" selection-start-line="23" selection-start-column="118" selection-end-line="23" selection-end-column="118" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -828,7 +816,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -836,9 +823,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="8" lean-forward="false" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -856,7 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -874,9 +858,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="16" column="48" lean-forward="false" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -884,7 +866,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,9 +873,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="741">
           <caret line="39" column="4" lean-forward="true" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -902,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -910,9 +888,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="33" lean-forward="true" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -934,7 +910,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="36" column="18" lean-forward="false" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -944,23 +919,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="800" column="16" lean-forward="false" selection-start-line="800" selection-start-column="16" selection-end-line="800" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Window.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/WindowFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+        <state relative-caret-position="171">
+          <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -969,7 +941,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Downloader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
+        <state relative-caret-position="1444">
           <caret line="84" column="69" lean-forward="false" selection-start-line="84" selection-start-column="69" selection-end-line="84" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -981,8 +953,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Updater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="23" column="48" lean-forward="true" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
+        <state relative-caret-position="342">
+          <caret line="23" column="48" lean-forward="false" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#859#860#0" expanded="true" />
@@ -991,13 +963,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Application.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/fr/ritonquilol/youtubedl/core/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
