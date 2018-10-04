@@ -1,10 +1,10 @@
-package fr.ritonquilol.youtubedl.core;
+package tk.ritonquilol.youtubedl.util;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-class WindowFactory {
+public class WindowFactory {
 
     private static final Color BG_COLOR = Color.decode("#dbdbdb");
 

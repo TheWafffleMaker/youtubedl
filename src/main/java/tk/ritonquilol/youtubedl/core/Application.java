@@ -1,4 +1,4 @@
-package fr.ritonquilol.youtubedl.core;
+package tk.ritonquilol.youtubedl.core;
 
 /**
  * youtube-dl.exe simplifier
@@ -11,7 +11,7 @@ public class Application {
 
     public static void main(String[] args) {
 
-        Window dlWindow = new Window();
+        new Window();
 
     }
 }

@@ -1,4 +1,4 @@
-package fr.ritonquilol.youtubedl.core;
+package tk.ritonquilol.youtubedl.core;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -53,7 +53,6 @@ class Updater {
                     line = reader.readLine();
                     if (line == null) {
                         System.out.println("End of process.");
-                        //progress.setText(progress.getText() + "End of process.");
                         break;
                     }
                     System.out.println(line);

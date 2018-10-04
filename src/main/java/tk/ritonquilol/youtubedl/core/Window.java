@@ -1,7 +1,9 @@
-package fr.ritonquilol.youtubedl.core;
+package tk.ritonquilol.youtubedl.core;
+
+import tk.ritonquilol.youtubedl.util.ProgressManager;
+import tk.ritonquilol.youtubedl.util.WindowFactory;
 
 import javax.swing.*;
-import javax.swing.text.DefaultCaret;
 
 public class Window {
 
@@ -14,9 +16,6 @@ public class Window {
         JTextField pathArea = WindowFactory.createTextField(300, 20, 75, 80, System.getProperty("user.home") + "\\Downloads\\");
         JCheckBox audioOnly = WindowFactory.createCheckBox(50, 115, "Audio only");
         JCheckBox playlist = WindowFactory.createCheckBox(150, 115, "Playlist");
-        JScrollPane progressScroll = WindowFactory.createTextAreaWithScroll(500, 150, 40, 150, "");
-        JTextArea progress = (JTextArea) progressScroll.getViewport().getComponent(0);
-        ((DefaultCaret)progress.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
         frame.add(WindowFactory.createLabel(30, 57, "URL  :"));
         frame.add(urlArea); // URL
@@ -24,9 +23,9 @@ public class Window {
         frame.add(pathArea); // PATH
         frame.add(audioOnly);
         frame.add(playlist);
-        frame.add(progressScroll);
+        ProgressManager progress = new ProgressManager(frame);
         frame.add(WindowFactory.createButton(120, 30, 400, 55, "Download", new Downloader.DownloadListener(progress)));
-        frame.add(WindowFactory.createButton(120, 30, 40, 315, "Update", new Updater.UpdateListener(progress)));
+        frame.add(WindowFactory.createButton(120, 30, 40, 315, "Update", new Updater.UpdateListener(progress.getProcessBox())));
         frame.setVisible(true);
     }
 }

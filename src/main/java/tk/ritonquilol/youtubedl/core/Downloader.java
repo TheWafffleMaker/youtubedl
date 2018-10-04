@@ -1,4 +1,6 @@
-package fr.ritonquilol.youtubedl.core;
+package tk.ritonquilol.youtubedl.core;
+
+import tk.ritonquilol.youtubedl.util.ProgressManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,11 +14,11 @@ class Downloader {
 
     public static class DownloadListener implements ActionListener {
 
-        final private JTextArea progress;
-        private DownloadThread thread;
+        final private ProgressManager progressMgr;
+        private DownloadThread downloadThread;
 
-        DownloadListener(JTextArea progress) {
-            this.progress = progress;
+        DownloadListener(ProgressManager progressMgr) {
+            this.progressMgr = progressMgr;
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -41,23 +43,23 @@ class Downloader {
             boolean playlist = chk.isSelected() && url.contains("&list");
 
 
-            thread = new DownloadThread(url, path, audio, playlist, progress);
-            thread.start();
+            downloadThread = new DownloadThread(url, path, audio, playlist, progressMgr);
+            downloadThread.start();
         }
     }
 
     private static class DownloadThread extends Thread {
 
-        private final JTextArea progress;
+        private final ProgressManager progressMgr;
         private final String url, path;
         private final boolean audio, playlist;
 
-        DownloadThread(String url, String path, boolean audio, boolean playlist, JTextArea progress) {
+        DownloadThread(String url, String path, boolean audio, boolean playlist, ProgressManager progress) {
             this.url = url;
             this.audio = audio;
             this.path = path;
             this.playlist = playlist;
-            this.progress = progress;
+            this.progressMgr = progress;
         }
 
         @Override
@@ -77,16 +79,38 @@ class Downloader {
                 Process process = builder.start(); // Process execution
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream())); // Reads the process outputs
-                String line;
+                String line, speed, speedUnit;
                 while (true) { // Displays the process outputs
                     line = reader.readLine();
                     if (line == null) {
                         System.out.println("End of process.");
-                        progress.setText(progress.getText() + "\n" + "End of process.");
+                        progressMgr.getProcessBox().setText(progressMgr.getProcessBox().getText() + "\n" + "End of process.");
                         break;
                     }
+                    if (line.contains("/s")) {
+                        speed = line.substring(line.indexOf("at")+4,line.indexOf("/s")-3);
+                        progressMgr.getSpeed().setText(speed);
+
+                        switch(line.charAt(line.indexOf("/s")-3)) {
+                            case 'K': speedUnit = line.substring(line.indexOf("/s")-3,line.indexOf("/s")+2);
+                            break;
+                            case 'M': speedUnit = line.substring(line.indexOf("/s")-3,line.indexOf("/s")+2);
+                            break;
+                            case 'G': speedUnit = line.substring(line.indexOf("/s")-3,line.indexOf("/s")+2);
+                            break;
+                            default: speedUnit = line.substring(line.indexOf("/s")+2);
+                        }
+                        progressMgr.getSpeedUnit().setText(speedUnit);
+
+                        progressMgr.getRemainingTime().setText(line.substring(line.indexOf("ETA")+4,line.length()));
+
+                    } else {
+                        progressMgr.getSpeed().setText("");
+                        progressMgr.getSpeedUnit().setText("");
+                        progressMgr.getRemainingTime().setText("");
+                    }
                     System.out.println(line);
-                    progress.setText(progress.getText() + "\n" + line);
+                    progressMgr.getProcessBox().setText(progressMgr.getProcessBox().getText() + "\n" + line);
                 }
 
             } catch (IOException e) {
@@ -94,4 +118,6 @@ class Downloader {
             }
         }
     }
+
+
 }
