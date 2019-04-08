@@ -53,6 +53,7 @@ class Downloader {
         private final ProgressManager progressMgr;
         private final String url, path;
         private final boolean audio, playlist;
+        boolean downloadFinished = false;
 
         DownloadThread(String url, String path, boolean audio, boolean playlist, ProgressManager progress) {
             this.url = url;
@@ -84,31 +85,37 @@ class Downloader {
                     line = reader.readLine();
                     if (line == null) {
                         System.out.println("End of process.");
+                        downloadFinished = true;
                         progressMgr.getProcessBox().setText(progressMgr.getProcessBox().getText() + "\n" + "End of process.");
+                        printDownloadStatus();
                         break;
                     }
                     if (line.contains("/s")) {
+                        downloadFinished = false;
                         speed = line.substring(line.indexOf("at")+4,line.indexOf("/s")-3);
                         progressMgr.getSpeed().setText(speed);
 
+                        String substring = line.substring(line.indexOf("/s") - 3, line.indexOf("/s") + 2);
                         switch(line.charAt(line.indexOf("/s")-3)) {
-                            case 'K': speedUnit = line.substring(line.indexOf("/s")-3,line.indexOf("/s")+2);
+                            case 'K': speedUnit = substring;
                             break;
-                            case 'M': speedUnit = line.substring(line.indexOf("/s")-3,line.indexOf("/s")+2);
+                            case 'M': speedUnit = substring;
                             break;
-                            case 'G': speedUnit = line.substring(line.indexOf("/s")-3,line.indexOf("/s")+2);
+                            case 'G': speedUnit = substring;
                             break;
                             default: speedUnit = line.substring(line.indexOf("/s")+2);
                         }
                         progressMgr.getSpeedUnit().setText(speedUnit);
 
-                        progressMgr.getRemainingTime().setText(line.substring(line.indexOf("ETA")+4,line.length()));
+                        progressMgr.getRemainingTime().setText("~ " + line.substring(line.indexOf("ETA")+4));
 
                     } else {
                         progressMgr.getSpeed().setText("");
                         progressMgr.getSpeedUnit().setText("");
                         progressMgr.getRemainingTime().setText("");
+                        downloadFinished = true;
                     }
+                    printDownloadStatus();
                     System.out.println(line);
                     progressMgr.getProcessBox().setText(progressMgr.getProcessBox().getText() + "\n" + line);
                 }
@@ -116,6 +123,10 @@ class Downloader {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        private void printDownloadStatus() {
+            progressMgr.getDownloadFinished().setVisible(downloadFinished);
         }
     }
 

@@ -55,7 +55,7 @@ public class WindowFactory {
 
     public static JLabel createLabel(int xPos, int yPos, String text) {
         JLabel label = new JLabel(text);
-        label.setBounds(xPos, yPos, 35, 15);
+        label.setBounds(xPos, yPos, 105, 15);
         return label;
     }
 

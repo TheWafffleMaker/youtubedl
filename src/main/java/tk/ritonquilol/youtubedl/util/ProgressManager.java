@@ -9,20 +9,28 @@ public class ProgressManager {
     private JLabel speed;
     private JLabel speedUnit;
     private JLabel remainingTime;
+    private JLabel downloadFinished;
 
     public ProgressManager(JFrame window) {
-        progress  = WindowFactory.createTextAreaWithScroll(500, 150, 40, 150, "");
+        progress  = WindowFactory.createTextAreaWithScroll(window.getWidth()-100, 150, 40, 150, "");
         processBox = (JTextArea) progress.getViewport().getComponent(0);
         ((DefaultCaret)processBox.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         speed = WindowFactory.createLabel(200,315, "");
-        speedUnit = WindowFactory.createLabel(250,315, "");
+        speedUnit = WindowFactory.createLabel(230,315, "");
         remainingTime = WindowFactory.createLabel(290,315, "");
+        downloadFinished = new JLabel("Download finished !");
+        downloadFinished.setBounds(200,315,150,15);
+        downloadFinished.setVisible(false);
         window.add(progress);
         window.add(speed);
         window.add(speedUnit);
         window.add(remainingTime);
+        window.add(downloadFinished);
     }
 
+    public JLabel getDownloadFinished() {
+        return downloadFinished;
+    }
     public void setProcessBox(JTextArea processBox) {
         this.processBox = processBox;
     }
