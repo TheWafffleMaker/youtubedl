@@ -4,18 +4,11 @@ import tk.ritonquilol.youtubedl.util.*;
 
 import javax.swing.*;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.stream.Stream;
 
 class Window {
 
-    private JFrame frame;
-    private String defaultpath = System.getProperty("user.home") + "\\Downloads\\";
-
     Window() {
-        frame = WindowFactory.createWindow(600, 400, "Youtube Downloader");
+        JFrame frame = WindowFactory.createWindow(600, 400, "Youtube Downloader");
 
         JTextField urlArea = WindowFactory.createTextField(300, 20, 75, 55, "");
         JTextField pathArea = WindowFactory.createTextField(300, 20, 75, 80, getPathFromConfig());
@@ -26,9 +19,11 @@ class Window {
         frame.add(urlArea); // URL
         frame.add(WindowFactory.createLabel(30, 82, "Path :"));
         frame.add(pathArea); // PATH
-        frame.add(WindowFactory.createButton(18, 18, 377, 81, "...", new PathPicker.PickerListener(frame)));
         frame.add(audioOnly);
         frame.add(playlist);
+        frame.add(WindowFactory.createLabel(545, 340, "v" + Application.__CURRENT_VERSION));
+
+        frame.add(WindowFactory.createButton(18, 18, 377, 81, "...", new PathPicker.PickerListener(frame)));
         ProgressManager progress = new ProgressManager(frame);
         frame.add(WindowFactory.createButton(120, 30, 400, 55, "Download", new Downloader.DownloadListener(progress)));
         frame.add(WindowFactory.createButton(120, 30, 40, 315, "Update", new Updater.UpdateListener(progress.getProcessBox())));
@@ -64,6 +59,6 @@ class Window {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return (path.length() == 0 ? defaultpath : path);
+        return (path.length() == 0 ? System.getProperty("user.home") + "\\Downloads\\" : path);
     }
 }

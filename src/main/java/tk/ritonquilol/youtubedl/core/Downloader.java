@@ -52,7 +52,7 @@ class Downloader {
                 downloadThread = new DownloadThread(url, path, audio, playlist, progressMgr);
                 downloadThread.start();
                 isDownloading = !isDownloading;
-                JButton downloadButton = ((JButton) cont.getComponent(11));
+                JButton downloadButton = ((JButton) cont.getComponent(13));
                 if (isDownloading) {
                     downloadButton.setText("Pause");
                 } else {

@@ -8,6 +8,8 @@ package tk.ritonquilol.youtubedl.core;
 
 public class Application {
 
+    static final String __CURRENT_VERSION = "0.28";
+
 
     public static void main(String[] args) {
 
