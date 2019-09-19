@@ -15,6 +15,7 @@ public class WindowFactory {
         frame.setSize(width, height);
         frame.getContentPane().setBackground(BG_COLOR);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
         return frame;
     }
 
@@ -25,6 +26,7 @@ public class WindowFactory {
         button.setBackground(Color.GRAY);
         button.setForeground(Color.WHITE);
         button.addActionListener(listener);
+        button.setFocusPainted(false);
         return button;
     }
 
@@ -50,6 +52,7 @@ public class WindowFactory {
         chk.setBackground(BG_COLOR);
         chk.setBounds(xPos, yPos, 100, 15);
         chk.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        chk.setFocusPainted(false);
         return chk;
     }
 

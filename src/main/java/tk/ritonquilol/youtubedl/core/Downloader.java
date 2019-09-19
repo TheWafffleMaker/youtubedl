@@ -12,6 +12,10 @@ import java.io.InputStreamReader;
 
 class Downloader {
 
+    private static boolean isDownloading = false;
+    private static Container cont;
+    private static Process process;
+
     public static class DownloadListener implements ActionListener {
 
         final private ProgressManager progressMgr;
@@ -19,32 +23,42 @@ class Downloader {
 
         DownloadListener(ProgressManager progressMgr) {
             this.progressMgr = progressMgr;
+
         }
 
         public void actionPerformed(ActionEvent e) {
-            Container cont = ( (JButton)e.getSource() ).getParent();
+            cont = ( (JButton)e.getSource() ).getParent();
 
             JTextField txt = (JTextField) cont.getComponent(1);
             String url = txt.getText();
 
-            txt = (JTextField) cont.getComponent(3);
-            String path = txt.getText();
+            if (url.length() > 0) {
+                txt = (JTextField) cont.getComponent(3);
+                String path = txt.getText();
 
-            if ((path.charAt(path.length()-1)) == '\\') {
-                path += "%(title)s.%(ext)s";
-            } else {
-                path += "\\%(title)s.%(ext)s";
+                if ((path.charAt(path.length() - 1)) == '\\') {
+                    path += "%(title)s.%(ext)s";
+                } else {
+                    path += "\\%(title)s.%(ext)s";
+                }
+
+                JCheckBox chk = (JCheckBox) cont.getComponent(4);
+                boolean audio = chk.isSelected();
+
+                chk = (JCheckBox) cont.getComponent(5);
+                boolean playlist = chk.isSelected() && url.contains("&list");
+
+
+                downloadThread = new DownloadThread(url, path, audio, playlist, progressMgr);
+                downloadThread.start();
+                isDownloading = !isDownloading;
+                JButton downloadButton = ((JButton) cont.getComponent(11));
+                if (isDownloading) {
+                    downloadButton.setText("Pause");
+                } else {
+                    downloadButton.setText("Download");
+                }
             }
-
-            JCheckBox chk = (JCheckBox) cont.getComponent(4);
-            boolean audio = chk.isSelected();
-
-            chk = (JCheckBox) cont.getComponent(5);
-            boolean playlist = chk.isSelected() && url.contains("&list");
-
-
-            downloadThread = new DownloadThread(url, path, audio, playlist, progressMgr);
-            downloadThread.start();
         }
     }
 
@@ -65,59 +79,77 @@ class Downloader {
 
         @Override
         public void run() {
-            String command = "youtube-dl.exe"
-                    + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "")
-                    + (playlist  ? " --yes-playlist" : "")
-                    + " -o \"" + path + "\" \"" + url + "\"";
+            String command;
+
+                command = "youtube-dl.exe"
+                        + (audio ? " -x --audio-format \"mp3\" --audio-quality 0" : "")
+                        + (playlist ? " --yes-playlist" : " --no-playlist")
+                        + " -i -o \"" + path + "\" \"" + url + "\"";
+
 
             System.out.println(command);
 
+
             ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command); // Process creation
             builder.redirectErrorStream(true);
-
             try {
+                process = builder.start();
 
-                Process process = builder.start(); // Process execution
+
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream())); // Reads the process outputs
                 String line, speed, speedUnit;
                 while (true) { // Displays the process outputs
-                    line = reader.readLine();
-                    if (line == null) {
-                        System.out.println("End of process.");
-                        downloadFinished = true;
-                        progressMgr.getProcessBox().setText(progressMgr.getProcessBox().getText() + "\n" + "End of process.");
-                        printDownloadStatus();
-                        break;
-                    }
-                    if (line.contains("/s")) {
-                        downloadFinished = false;
-                        speed = line.substring(line.indexOf("at")+4,line.indexOf("/s")-3);
-                        progressMgr.getSpeed().setText(speed);
-
-                        String substring = line.substring(line.indexOf("/s") - 3, line.indexOf("/s") + 2);
-                        switch(line.charAt(line.indexOf("/s")-3)) {
-                            case 'K': speedUnit = substring;
+                    if (isDownloading) {
+                        line = reader.readLine();
+                        if (line == null) {
+                            System.out.println("End of process.");
+                            downloadFinished = true;
+                            progressMgr.getProcessBox().setText(progressMgr.getProcessBox().getText() + "\n" + "End of process.");
+                            printDownloadStatus();
                             break;
-                            case 'M': speedUnit = substring;
-                            break;
-                            case 'G': speedUnit = substring;
-                            break;
-                            default: speedUnit = line.substring(line.indexOf("/s")+2);
                         }
-                        progressMgr.getSpeedUnit().setText(speedUnit);
+                        if (line.contains("/s")) {
+                            downloadFinished = false;
+                            speed = line.substring(line.indexOf("at") + 4, line.indexOf("/s") - 3);
+                            progressMgr.getSpeed().setText(speed);
 
-                        progressMgr.getRemainingTime().setText("~ " + line.substring(line.indexOf("ETA")+4));
+                            String substring = line.substring(line.indexOf("/s") - 3, line.indexOf("/s") + 2);
+                            switch (line.charAt(line.indexOf("/s") - 3)) {
+                                case 'K':
+                                    speedUnit = substring;
+                                    break;
+                                case 'M':
+                                    speedUnit = substring;
+                                    break;
+                                case 'G':
+                                    speedUnit = substring;
+                                    break;
+                                default:
+                                    speedUnit = line.substring(line.indexOf("/s") + 2);
+                            }
+                            progressMgr.getSpeedUnit().setText(speedUnit);
 
-                    } else {
+                            progressMgr.getRemainingTime().setText("~ " + line.substring(line.indexOf("ETA") + 4));
+
+                        } else {
+                            progressMgr.getSpeed().setText("");
+                            progressMgr.getSpeedUnit().setText("");
+                            progressMgr.getRemainingTime().setText("");
+                        }
+                        if (line.contains("100%"))
+                            downloadFinished = true;
+                        printDownloadStatus();
+                        System.out.println(line);
+                        progressMgr.getProcessBox().setText(progressMgr.getProcessBox().getText() + "\n" + line);
+                    } else if (!downloadFinished) {
+                        //long pid = process.pid();
+                        //Runtime.getRuntime().exec("Taskkill /PID " + pid + " /F");
+                        //process.destroy();
                         progressMgr.getSpeed().setText("");
                         progressMgr.getSpeedUnit().setText("");
-                        progressMgr.getRemainingTime().setText("");
-                        downloadFinished = true;
+                        progressMgr.getRemainingTime().setText("Paused");
                     }
-                    printDownloadStatus();
-                    System.out.println(line);
-                    progressMgr.getProcessBox().setText(progressMgr.getProcessBox().getText() + "\n" + line);
                 }
 
             } catch (IOException e) {
@@ -127,6 +159,7 @@ class Downloader {
 
         private void printDownloadStatus() {
             progressMgr.getDownloadFinished().setVisible(downloadFinished);
+            
         }
     }
 

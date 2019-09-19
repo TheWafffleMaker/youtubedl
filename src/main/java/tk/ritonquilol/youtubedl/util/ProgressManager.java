@@ -31,6 +31,7 @@ public class ProgressManager {
     public JLabel getDownloadFinished() {
         return downloadFinished;
     }
+
     public void setProcessBox(JTextArea processBox) {
         this.processBox = processBox;
     }
