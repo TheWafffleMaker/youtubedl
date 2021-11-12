@@ -1,4 +1,4 @@
-package tk.ritonquilol.youtubedl.util;
+package fr.ritonquilol.youtubedl.util;
 
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
@@ -14,7 +14,7 @@ public class ProgressManager {
     public ProgressManager(JFrame window) {
         progress  = WindowFactory.createTextAreaWithScroll(window.getWidth()-100, 150, 40, 150, "");
         processBox = (JTextArea) progress.getViewport().getComponent(0);
-        ((DefaultCaret)processBox.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        ((DefaultCaret)processBox.getCaret()).setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
         speed = WindowFactory.createLabel(200,315, "");
         speedUnit = WindowFactory.createLabel(230,315, "");
         remainingTime = WindowFactory.createLabel(290,315, "");

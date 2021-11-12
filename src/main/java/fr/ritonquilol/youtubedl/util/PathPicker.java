@@ -1,7 +1,10 @@
-package tk.ritonquilol.youtubedl.util;
+package fr.ritonquilol.youtubedl.util;
+
+import fr.ritonquilol.youtubedl.core.Window;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 
@@ -9,20 +12,21 @@ public class PathPicker {
 
     public static class PickerListener implements ActionListener {
 
-        private Component parent;
+        private Window window;
         private String path;
+
+        private static Logger LOG = LoggerFactory.getLogger(PathPicker.class);
 
         public PickerListener() {
             this(null);
         }
 
-        public PickerListener(Component parent) {
-            this.parent = parent;
+        public PickerListener(Window window) {
+            this.window = window;
         }
 
         public void actionPerformed(ActionEvent e) {
-            Container cont = ( (JButton)e.getSource() ).getParent();
-            JTextField jpath = (JTextField) cont.getComponent(3);
+            JTextField jpath = (JTextField) window.getComponentByName(Window.PATH_AREA);
 
             JFileChooser chooser = new JFileChooser();
             chooser.setCurrentDirectory(new java.io.File(jpath.getText()));
@@ -33,15 +37,15 @@ public class PathPicker {
             //
             chooser.setAcceptAllFileFilterUsed(false);
             //
-            if (chooser.showOpenDialog(parent) == JFileChooser.APPROVE_OPTION) {
+            if (chooser.showOpenDialog(window.getFrame()) == JFileChooser.APPROVE_OPTION) {
                 jpath.setText(chooser.getSelectedFile().toString());
 
-                System.out.println("getCurrentDirectory(): "
+                LOG.debug("getCurrentDirectory(): "
                         + chooser.getCurrentDirectory());
-                System.out.println("getSelectedFile() : "
+                LOG.debug("getSelectedFile() : "
                         + chooser.getSelectedFile());
             } else {
-                System.out.println("No Selection ");
+                LOG.info("No directory selected");
             }
         }
     }

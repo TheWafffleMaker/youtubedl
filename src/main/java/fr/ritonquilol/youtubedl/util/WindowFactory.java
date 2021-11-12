@@ -1,4 +1,4 @@
-package tk.ritonquilol.youtubedl.util;
+package fr.ritonquilol.youtubedl.util;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +19,7 @@ public class WindowFactory {
         return frame;
     }
 
-    public static JButton createButton(int width, int height, int xPos, int yPos, String text, ActionListener listener)
+    public static JButton createButton(int width, int height, int xPos, int yPos, String text, ActionListener listener, String name)
     {
         final JButton button = new JButton(text);
         button.setBounds(xPos, yPos, width, height);
@@ -27,6 +27,7 @@ public class WindowFactory {
         button.setForeground(Color.WHITE);
         button.addActionListener(listener);
         button.setFocusPainted(false);
+        button.setName(name);
         return button;
     }
 
@@ -59,6 +60,12 @@ public class WindowFactory {
     public static JLabel createLabel(int xPos, int yPos, String text) {
         JLabel label = new JLabel(text);
         label.setBounds(xPos, yPos, 105, 15);
+        return label;
+    }
+
+    public static JLabel createLabel(int xPos, int yPos, String text, String name) {
+        JLabel label = createLabel(xPos, yPos, text);
+        label.setName(name);
         return label;
     }
 

@@ -1,4 +1,7 @@
-package tk.ritonquilol.youtubedl.core;
+package fr.ritonquilol.youtubedl.core;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 class Updater {
+
+    private static final Logger LOG = LoggerFactory.getLogger(Updater.class);
 
     public static class UpdateListener implements ActionListener {
 
@@ -38,9 +43,9 @@ class Updater {
 
         @Override
         public void run() {
-            String command = "youtube-dl.exe -U";
+            String updateCommand= "youtube-dl.exe -U --no-check-certificate";
 
-            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command); // Process creation
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", updateCommand); // Process creation
             builder.redirectErrorStream(true);
 
             try {
@@ -48,20 +53,21 @@ class Updater {
                 Process process = builder.start(); // Process execution
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream())); // Reads the process outputs
-                String line;
-                while (true) { // Displays the process outputs
-                    line = reader.readLine();
-                    if (line == null) {
-                        System.out.println("End of process.");
-                        break;
-                    }
-                    System.out.println(line);
+                String line = reader.readLine();;
+                while (line != null) { // Displays the process outputs
+                    LOG.info(line);
                     progress.setText(progress.getText() + " " + line + "\n");
+                    line = reader.readLine();
                 }
+                LOG.debug("End of updating process. Destroying...");
+                process.destroy();
+                LOG.debug("Process destroyed.");
 
             } catch (IOException e1) {
+                LOG.error("Error while reading the update process stream.");
                 e1.printStackTrace();
             }
+
         }
     }
 }

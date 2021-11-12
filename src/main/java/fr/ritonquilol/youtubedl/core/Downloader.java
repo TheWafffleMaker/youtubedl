@@ -1,9 +1,10 @@
-package tk.ritonquilol.youtubedl.core;
+package fr.ritonquilol.youtubedl.core;
 
-import tk.ritonquilol.youtubedl.util.ProgressManager;
+import fr.ritonquilol.youtubedl.util.ProgressManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -13,28 +14,28 @@ import java.io.InputStreamReader;
 class Downloader {
 
     private static boolean isDownloading = false;
-    private static Container cont;
     private static Process process;
+    private static final Logger LOG = LoggerFactory.getLogger(Downloader.class);
 
     public static class DownloadListener implements ActionListener {
 
         final private ProgressManager progressMgr;
         private DownloadThread downloadThread;
+        private final Window window;
 
-        DownloadListener(ProgressManager progressMgr) {
+        DownloadListener(Window window, ProgressManager progressMgr) {
+            this.window = window;
             this.progressMgr = progressMgr;
 
         }
 
         public void actionPerformed(ActionEvent e) {
-            cont = ( (JButton)e.getSource() ).getParent();
 
-            JTextField txt = (JTextField) cont.getComponent(1);
-            String url = txt.getText();
+            JTextField urlArea = ((JTextField) window.getComponentByName(Window.URL_AREA));
+            String url = urlArea.getText();
 
             if (url.length() > 0) {
-                txt = (JTextField) cont.getComponent(3);
-                String path = txt.getText();
+                String path = ((JTextField) window.getComponentByName(Window.PATH_AREA)).getText();
 
                 if ((path.charAt(path.length() - 1)) == '\\') {
                     path += "%(title)s.%(ext)s";
@@ -42,17 +43,14 @@ class Downloader {
                     path += "\\%(title)s.%(ext)s";
                 }
 
-                JCheckBox chk = (JCheckBox) cont.getComponent(4);
-                boolean audio = chk.isSelected();
+                boolean audio = ((JCheckBox) window.getComponentByName(Window.AUDIO_CHECKBOX)).isSelected();
+                boolean playlist = ((JCheckBox) window.getComponentByName(Window.PLAYLIST_CHECKBOX)).isSelected() && url.contains("&list");
 
-                chk = (JCheckBox) cont.getComponent(5);
-                boolean playlist = chk.isSelected() && url.contains("&list");
+                JButton downloadButton = (JButton) window.getComponentByName(Window.DOWNLOAD);
 
-
-                downloadThread = new DownloadThread(url, path, audio, playlist, progressMgr);
+                downloadThread = new DownloadThread(url, path, audio, playlist, progressMgr, downloadButton);
                 downloadThread.start();
                 isDownloading = !isDownloading;
-                JButton downloadButton = ((JButton) cont.getComponent(13));
                 if (isDownloading) {
                     downloadButton.setText("Pause");
                 } else {
@@ -68,13 +66,15 @@ class Downloader {
         private final String url, path;
         private final boolean audio, playlist;
         boolean downloadFinished = false;
+        private final JButton downloadButton;
 
-        DownloadThread(String url, String path, boolean audio, boolean playlist, ProgressManager progress) {
+        DownloadThread(String url, String path, boolean audio, boolean playlist, ProgressManager progress, JButton downloadButton) {
             this.url = url;
             this.audio = audio;
             this.path = path;
             this.playlist = playlist;
             this.progressMgr = progress;
+            this.downloadButton = downloadButton;
         }
 
         @Override
@@ -87,15 +87,13 @@ class Downloader {
                         + " -i -o \"" + path + "\" \"" + url + "\"";
 
 
-            System.out.println(command);
+            LOG.debug(command);
 
 
             ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command); // Process creation
             builder.redirectErrorStream(true);
             try {
                 process = builder.start();
-
-
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream())); // Reads the process outputs
                 String line, speed, speedUnit;
@@ -106,6 +104,8 @@ class Downloader {
                             System.out.println("End of process.");
                             downloadFinished = true;
                             progressMgr.getProcessBox().setText(progressMgr.getProcessBox().getText() + "\n" + "End of process.");
+                            downloadButton.setText("Download");
+                            isDownloading = false;
                             printDownloadStatus();
                             break;
                         }
@@ -117,12 +117,8 @@ class Downloader {
                             String substring = line.substring(line.indexOf("/s") - 3, line.indexOf("/s") + 2);
                             switch (line.charAt(line.indexOf("/s") - 3)) {
                                 case 'K':
-                                    speedUnit = substring;
-                                    break;
-                                case 'M':
-                                    speedUnit = substring;
-                                    break;
                                 case 'G':
+                                case 'M':
                                     speedUnit = substring;
                                     break;
                                 default:
@@ -140,12 +136,9 @@ class Downloader {
                         if (line.contains("100%"))
                             downloadFinished = true;
                         printDownloadStatus();
-                        System.out.println(line);
+                        LOG.debug(line);
                         progressMgr.getProcessBox().setText(progressMgr.getProcessBox().getText() + "\n" + line);
                     } else if (!downloadFinished) {
-                        //long pid = process.pid();
-                        //Runtime.getRuntime().exec("Taskkill /PID " + pid + " /F");
-                        //process.destroy();
                         progressMgr.getSpeed().setText("");
                         progressMgr.getSpeedUnit().setText("");
                         progressMgr.getRemainingTime().setText("Paused");

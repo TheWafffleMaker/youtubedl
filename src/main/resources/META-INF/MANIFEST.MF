@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Class-Path: tk.ritonquilol.youtubedl.core.Application
-Main-Class: tk.ritonquilol.youtubedl.core.Application
+Class-Path: Application
+Main-Class: fr.ritonquilol.youtubedl.core.Application
 
